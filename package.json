@@ -1,0 +1,37 @@
+{
+  "name": "react-native-card-swiper",
+  "version": "0.1.0",
+  "description": "Tinder-like card swiper for React Native — performant UI-thread animations, undo support, and imperative API.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": ["src"],
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "keywords": [
+    "react-native",
+    "swiper",
+    "card-swiper",
+    "tinder",
+    "swipe",
+    "gesture",
+    "reanimated",
+    "deck"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.70.0",
+    "react-native-reanimated": ">=3.0.0",
+    "react-native-gesture-handler": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "react-native": "^0.81.0",
+    "react-native-reanimated": "^4.0.0",
+    "react-native-gesture-handler": "^2.28.0",
+    "typescript": "^5.0.0"
+  }
+}
