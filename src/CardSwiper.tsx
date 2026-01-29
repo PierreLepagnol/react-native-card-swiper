@@ -195,29 +195,31 @@ function SwipeCardInner<T extends CardItem>({
 
   return (
     <Animated.View style={[defaultStyles.cardWrapper, cardStyle]}>
-      <View style={defaultStyles.renderCardContainer}>{renderCard(item)}</View>
+      <View style={defaultStyles.renderCardContainer}>
+        {renderCard(item)}
+        
+        <Animated.View
+          style={[
+            defaultStyles.overlayLabelContainer,
+            defaultStyles.overlayKeep,
+            rightOverlayStyle,
+          ]}
+          pointerEvents="none"
+        >
+          {rightOverlayContent}
+        </Animated.View>
 
-      <Animated.View
-        style={[
-          defaultStyles.overlayLabelContainer,
-          defaultStyles.overlayKeep,
-          rightOverlayStyle,
-        ]}
-        pointerEvents="none"
-      >
-        {rightOverlayContent}
-      </Animated.View>
-
-      <Animated.View
-        style={[
-          defaultStyles.overlayLabelContainer,
-          defaultStyles.overlayOut,
-          leftOverlayStyle,
-        ]}
-        pointerEvents="none"
-      >
-        {leftOverlayContent}
-      </Animated.View>
+        <Animated.View
+          style={[
+            defaultStyles.overlayLabelContainer,
+            defaultStyles.overlayOut,
+            leftOverlayStyle,
+          ]}
+          pointerEvents="none"
+        >
+          {leftOverlayContent}
+        </Animated.View>
+      </View>
     </Animated.View>
   );
 }
