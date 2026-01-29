@@ -70,6 +70,7 @@ type SwipeCardInternalProps<T extends CardItem> = {
   maxRotation: number;
   behindCardScale: number;
   swipeThresholdPx: number;
+  overlayMode: "fill-card" | "match-card";
 };
 
 function SwipeCardInner<T extends CardItem>({
@@ -86,7 +87,10 @@ function SwipeCardInner<T extends CardItem>({
   maxRotation,
   behindCardScale,
   swipeThresholdPx,
+  overlayMode,
 }: SwipeCardInternalProps<T>) {
+  const isOverlayMatchingCard = overlayMode === "match-card";
+
   const cardStyle = useAnimatedStyle(() => {
     const rel = index - activeIndex.value;
 
@@ -193,6 +197,40 @@ function SwipeCardInner<T extends CardItem>({
     <DefaultLeftOverlay />
   );
 
+  if (isOverlayMatchingCard) {
+    return (
+      <Animated.View style={[defaultStyles.cardWrapper, cardStyle]}>
+        <View style={defaultStyles.cardSurface}>
+          <View style={defaultStyles.renderCardContainerMatch}>
+            {renderCard(item)}
+          </View>
+
+          <Animated.View
+            style={[
+              defaultStyles.overlayLabelContainer,
+              defaultStyles.overlayKeep,
+              rightOverlayStyle,
+            ]}
+            pointerEvents="none"
+          >
+            {rightOverlayContent}
+          </Animated.View>
+
+          <Animated.View
+            style={[
+              defaultStyles.overlayLabelContainer,
+              defaultStyles.overlayOut,
+              leftOverlayStyle,
+            ]}
+            pointerEvents="none"
+          >
+            {leftOverlayContent}
+          </Animated.View>
+        </View>
+      </Animated.View>
+    );
+  }
+
   return (
     <Animated.View style={[defaultStyles.cardWrapper, cardStyle]}>
       <View style={defaultStyles.renderCardContainer}>
@@ -242,6 +280,7 @@ function CardSwiperInner<T extends CardItem>(
     flyOutConfig = DEFAULT_FLY_OUT,
     containerStyle,
     cardStyle: _cardStyle,
+    overlayMode = "fill-card",
   }: CardSwiperProps<T>,
   ref: React.ForwardedRef<CardSwiperRef>,
 ) {
@@ -420,6 +459,7 @@ function CardSwiperInner<T extends CardItem>(
               maxRotation={maxRotation}
               behindCardScale={behindCardScale}
               swipeThresholdPx={swipeThresholdPx}
+              overlayMode={overlayMode}
             />
           );
         })}
@@ -474,6 +514,14 @@ const defaultStyles = StyleSheet.create({
     borderRadius: 16,
     width: "100%",
     height: "100%",
+    overflow: "hidden",
+  },
+  renderCardContainerMatch: {
+    width: "100%",
+  },
+  cardSurface: {
+    width: "100%",
+    borderRadius: 16,
     overflow: "hidden",
   },
   overlayLabelContainer: {

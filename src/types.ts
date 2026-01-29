@@ -117,6 +117,13 @@ export type CardSwiperProps<T extends CardItem> = {
 
   /** Style applied to each card wrapper. */
   cardStyle?: ViewStyle;
+
+  /**
+   * Controls how overlay sizing is computed.
+   * - "fill-card": overlays fill the card wrapper (default).
+   * - "match-card": overlays match the rendered card content size.
+   */
+  overlayMode?: "fill-card" | "match-card";
 };
 
 // ---- ActionButton props ----
