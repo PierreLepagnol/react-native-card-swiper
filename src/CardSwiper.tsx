@@ -199,25 +199,21 @@ function SwipeCardInner<T extends CardItem>({
         {renderCard(item)}
         
         <Animated.View
-          style={[
-            defaultStyles.overlayLabelContainer,
-            defaultStyles.overlayKeep,
-            rightOverlayStyle,
-          ]}
+          style={[defaultStyles.overlayLabelContainer, rightOverlayStyle]}
           pointerEvents="none"
         >
-          {rightOverlayContent}
+          <View style={[defaultStyles.overlayBackground, defaultStyles.overlayKeep]}>
+            {rightOverlayContent}
+          </View>
         </Animated.View>
 
         <Animated.View
-          style={[
-            defaultStyles.overlayLabelContainer,
-            defaultStyles.overlayOut,
-            leftOverlayStyle,
-          ]}
+          style={[defaultStyles.overlayLabelContainer, leftOverlayStyle]}
           pointerEvents="none"
         >
-          {leftOverlayContent}
+          <View style={[defaultStyles.overlayBackground, defaultStyles.overlayOut]}>
+            {leftOverlayContent}
+          </View>
         </Animated.View>
       </View>
     </Animated.View>
@@ -486,10 +482,14 @@ const defaultStyles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  overlayBackground: {
+    ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-    overflow: "hidden",
   },
   overlayKeep: {
     backgroundColor: "rgba(67, 160, 71, 0.15)",
