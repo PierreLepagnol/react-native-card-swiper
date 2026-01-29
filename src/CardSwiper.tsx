@@ -481,8 +481,11 @@ const defaultStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlayLabelContainer: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 16,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     alignItems: "center",
     justifyContent: "center",
   },
