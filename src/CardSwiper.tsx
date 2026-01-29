@@ -470,6 +470,7 @@ const defaultStyles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
+    overflow: "hidden",
   },
   renderCardContainer: {
     borderRadius: 16,
