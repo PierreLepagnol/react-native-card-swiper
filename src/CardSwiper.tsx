@@ -486,8 +486,10 @@ const defaultStyles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   overlayKeep: {
     backgroundColor: "rgba(67, 160, 71, 0.15)",
